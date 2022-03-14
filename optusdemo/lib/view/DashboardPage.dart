@@ -16,11 +16,17 @@ class DashboardPage extends StatefulWidget {
 
 class _DashboardPage extends State<DashboardPage> {
 
+  late GlobalKey<ScaffoldState> _scaffoldKey;
+
+
+
   List<StageInfo> getStaticData(){
 
     List<StageInfo> stageInfoList = [
-      StageInfo(title: "Stage 1",subTitle: "Stage 1 sub title",desc: "Stage 1 description",startDate: "11-03-2022",endDate: "23-03-2022"),
-      StageInfo(title: "Stage 2",subTitle: "Stage 2 sub title",desc: "Stage 2 description",startDate: "11-03-2022",endDate: "23-03-2022"),
+      StageInfo(title: "Stage 1",subTitle: "Stage 1 sub title",desc: "Stage 1 description",startDate: "11-03-2022",endDate: "23-03-2022",isParent: "1"),
+      StageInfo(title: "Sub Stage",subTitle: "Sub Stage sub title",desc: "Sub stage  description",startDate: "11-03-2022",endDate: "23-03-2022",isParent: "0"),
+      StageInfo(title: "Sub Stage",subTitle: "Sub Stage sub title",desc: "Sub stage  description",startDate: "11-03-2022",endDate: "23-03-2022",isParent: "0"),
+      StageInfo(title: "Stage 2",subTitle: "Stage 2 sub title",desc: "Stage 1 description",startDate: "11-03-2022",endDate: "23-03-2022",isParent: "1"),
 
     ];
 
@@ -73,13 +79,16 @@ class _DashboardPage extends State<DashboardPage> {
 
   @override
   Widget build(BuildContext context) {
-
+    _scaffoldKey = GlobalKey();
     ApiResponse apiResponse = Provider.of<DashboardViewModel>(context).response;
     return Scaffold(
+      key: _scaffoldKey,
       appBar: AppBar(
         title: Text('Dashboard'),
       ),
-      body: Column(
+      body: RefreshIndicator(
+      onRefresh: _pullRefresh,
+      child:Column(
         children: <Widget>[
           Padding(
             padding: const EdgeInsets.symmetric(vertical: 10.0),
@@ -100,10 +109,21 @@ class _DashboardPage extends State<DashboardPage> {
           ),
           Expanded(child: getStageInfoListWidget(context, apiResponse)),
         ],
-      ),
+      )),
     );
   }
+
+  Future<void> _pullRefresh() async {
+
+    print("_pullRefresh called");
+    // Provider.of<DashboardViewModel>(context, listen: false)
+    //     .setSelectedStageInfo(null);
+    // Provider.of<DashboardViewModel>(context, listen: false)
+    //     .fetchStageInfoData("");
+  }
 }
+
+
 
 
 /*
