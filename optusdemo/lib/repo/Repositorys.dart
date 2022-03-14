@@ -13,9 +13,8 @@ class Repositorys {
 
     dynamic response = await _mediaService.getResponse(value);
     final jsonData = response['results'] as List;
-    List<StageInfo> mediaList =
-    jsonData.map((tagJson) => StageInfo.fromJson(tagJson)).toList();
-    return mediaList;
+    List<StageInfo> stageInfoList = jsonData.map((tagJson) => StageInfo.fromJson(tagJson)).toList();
+    return stageInfoList;
 
   }
 
@@ -28,4 +27,7 @@ class Repositorys {
     return userInfo;
 
   }
+
+
+
 }
