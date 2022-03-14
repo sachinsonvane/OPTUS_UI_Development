@@ -7,20 +7,20 @@ import '../api/BaseService.dart';
 
 class Repositorys {
 
-  BaseService _mediaService = MyService();
+  BaseService _stageService = MyService();
 
   Future<List<StageInfo>> fetchStageInfoList(String value) async {
 
-    dynamic response = await _mediaService.getResponse(value);
+    dynamic response = await _stageService.getResponse(value);
     final jsonData = response['results'] as List;
     List<StageInfo> stageInfoList = jsonData.map((tagJson) => StageInfo.fromJson(tagJson)).toList();
     return stageInfoList;
 
   }
 
-  Future<UserInfo> fetchUserInfo(String value) async {
+  Future<UserInfo> fetchLoginData(String value) async {
 
-    dynamic response = await _mediaService.getResponse(value);
+    dynamic response = await _stageService.getResponse(value);
     final jsonData = response['results'] as dynamic;
     UserInfo userInfo =
     jsonData.map((tagJson) => UserInfo.fromJson(tagJson)).toList();

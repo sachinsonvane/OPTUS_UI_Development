@@ -21,7 +21,7 @@ class DashboardViewModel with ChangeNotifier {
   /// Call the stageInfo service and gets the data of requested media data of
 
   Future<void> fetchStageInfoData(String value) async {
-    _apiResponse = ApiResponse.loading('Fetching artist data');
+    _apiResponse = ApiResponse.loading('Fetching stageInfo data');
     notifyListeners();
     try {
       List<StageInfo> stageInfoList = await Repositorys().fetchStageInfoList(value);
