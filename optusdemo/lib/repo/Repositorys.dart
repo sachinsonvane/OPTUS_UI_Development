@@ -23,7 +23,7 @@ class Repositorys {
     dynamic response = await _stageService.getResponse(value);
     final jsonData = response['results'] as dynamic;
     UserInfo userInfo =
-    jsonData.map((tagJson) => UserInfo.fromJson(tagJson)).toList();
+    jsonData.map((tagJson) => UserInfo.fromJson(tagJson));
     return userInfo;
 
   }

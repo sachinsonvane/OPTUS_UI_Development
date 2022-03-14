@@ -4,7 +4,9 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:optusdemo/view/DashboardPage.dart';
+import 'package:optusdemo/view/LoginPage.dart';
 import 'package:optusdemo/viewmodel/DashboardViewModel.dart';
+import 'package:optusdemo/viewmodel/LoginViewModel.dart';
 import 'package:provider/provider.dart';
 
 void main() {
@@ -23,6 +25,7 @@ class MyApp extends StatelessWidget {
   Widget build(BuildContext context) {
     return MultiProvider(
       providers: [
+        ChangeNotifierProvider.value(value: LoginViewModel()),
         ChangeNotifierProvider.value(value: DashboardViewModel()),
       ],
       child: MaterialApp(
@@ -35,7 +38,7 @@ class MyApp extends StatelessWidget {
         ),
         initialRoute: '/',
         routes: {
-          '/': (context) => DashboardPage(),
+          '/': (context) => LoginPage(),
         },
       ),
     );
