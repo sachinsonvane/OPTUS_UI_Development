@@ -9,6 +9,7 @@ import 'package:provider/provider.dart';
 import '../api/ApiResponses.dart';
 import '../model/UserInfo.dart';
 import '../viewmodel/DashboardViewModel.dart';
+import '../viewmodel/LoginViewModel.dart';
 import 'DashboardPage.dart';
 
 class LoginPage extends StatefulWidget {
@@ -110,6 +111,10 @@ class _LoginPage extends State<LoginPage> {
           padding: EdgeInsets.fromLTRB(20.0, 15.0, 20.0, 15.0),
           onPressed: () {
             //print("H1");
+
+           //ApiResponse apiResponse = Provider.of<LoginViewModel>(context).response;
+          // UserInfo? userInfo = apiResponse.data as UserInfo?;
+
             Navigator.push(
               context,
               MaterialPageRoute(builder: (context) => DashboardPage()),
