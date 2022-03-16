@@ -28,6 +28,16 @@ class Repositorys {
 
   }
 
+  Future<StageInfo> fetchStageDetailsData(String value) async {
+
+    dynamic response = await _stageService.getResponse(value);
+    final jsonData = response['results'] as dynamic;
+    StageInfo stageInfo =
+    jsonData.map((tagJson) => UserInfo.fromJson(tagJson));
+    return stageInfo;
+
+  }
+
 
 
 }

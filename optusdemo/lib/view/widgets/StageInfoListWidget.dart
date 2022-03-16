@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:optusdemo/model/StageInfo.dart';
+import 'package:optusdemo/view/StageDetailsPage.dart';
 import 'package:provider/provider.dart';
 
 import '../../viewmodel/DashboardViewModel.dart';
@@ -176,6 +177,10 @@ class _StageInfoListWidgetState extends State<StageInfoListWidget> {
                 if (null != data.title) {
                   widget._function(data);
                 }
+                Navigator.push(
+                  context,
+                  MaterialPageRoute(builder: (context) => StageDetailsPage()),
+                );
               },
               child: _buildSongItem(data),
             );

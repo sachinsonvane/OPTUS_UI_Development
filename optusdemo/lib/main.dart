@@ -7,6 +7,7 @@ import 'package:optusdemo/view/DashboardPage.dart';
 import 'package:optusdemo/view/LoginPage.dart';
 import 'package:optusdemo/viewmodel/DashboardViewModel.dart';
 import 'package:optusdemo/viewmodel/LoginViewModel.dart';
+import 'package:optusdemo/viewmodel/StageDetailsViewModel.dart';
 import 'package:provider/provider.dart';
 
 void main() {
@@ -27,6 +28,7 @@ class MyApp extends StatelessWidget {
       providers: [
         ChangeNotifierProvider.value(value: LoginViewModel()),
         ChangeNotifierProvider.value(value: DashboardViewModel()),
+        ChangeNotifierProvider.value(value: StageDetailsViewModel()),
       ],
       child: MaterialApp(
         debugShowCheckedModeBanner: false,
