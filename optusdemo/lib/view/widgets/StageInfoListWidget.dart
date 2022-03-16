@@ -4,6 +4,7 @@ import 'package:optusdemo/view/StageDetailsPage.dart';
 import 'package:provider/provider.dart';
 
 import '../../viewmodel/DashboardViewModel.dart';
+import '../../viewmodel/StageDetailsViewModel.dart';
 
 class StageInfoListWidget extends StatefulWidget {
 
@@ -177,6 +178,8 @@ class _StageInfoListWidgetState extends State<StageInfoListWidget> {
                 if (null != data.title) {
                   widget._function(data);
                 }
+                Provider.of<StageDetailsViewModel>(context, listen: false)
+                    .setSelectedStageDetailsInfo(data);
                 Navigator.push(
                   context,
                   MaterialPageRoute(builder: (context) => StageDetailsPage()),

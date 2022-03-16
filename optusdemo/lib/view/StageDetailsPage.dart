@@ -1,5 +1,6 @@
 
 
+import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:optusdemo/model/StageInfo.dart';
 import 'package:optusdemo/view/widgets/StageInfoListWidget.dart';
@@ -10,6 +11,7 @@ import '../api/ApiResponses.dart';
 import '../model/UserInfo.dart';
 import '../viewmodel/DashboardViewModel.dart';
 import '../viewmodel/LoginViewModel.dart';
+import '../viewmodel/StageDetailsViewModel.dart';
 import 'DashboardPage.dart';
 
 class StageDetailsPage extends StatefulWidget {
@@ -20,13 +22,78 @@ class StageDetailsPage extends StatefulWidget {
 
 class _StageDetailsPage extends State<StageDetailsPage> {
 
-  final _formKey = GlobalKey<FormState>();
-  final mUserNameController = TextEditingController(text: "Sachin");
-  final mPasswordController = TextEditingController(text: "12345");
 
+  Widget _buildSongItem(StageInfo stageInfo) {
+
+      return Padding(
+        padding: const EdgeInsets.symmetric(vertical: 10.0, horizontal: 20.0),
+        child: Column(
+
+          children: <Widget>[
+
+            Row(
+              children: [
+                Text(
+                  stageInfo.title ?? '',
+                  textAlign: TextAlign.center,
+                  style: TextStyle(
+                    fontSize: 18.0,
+                    fontWeight: FontWeight.w600,
+                  ),
+                  maxLines: 1,
+                  overflow: TextOverflow.ellipsis,
+                ),
+              ],
+            ),
+
+
+            SizedBox(
+              height: 15,
+            ),
+
+            Row(
+              children: [
+                Text(
+                  stageInfo.subTitle ?? '',
+                  style: TextStyle(
+                    fontSize: 16.0,
+                    fontWeight: FontWeight.w400,
+                  ),
+                  maxLines: 1,
+                  overflow: TextOverflow.ellipsis,
+                ),
+              ],
+            ),
+            SizedBox(
+              height: 15,
+            ),
+
+            Row(
+              children: [
+                Text(
+                  stageInfo.desc ?? '',
+                  style: TextStyle(
+                    fontSize: 14.0,
+                    color: Colors.grey,
+                  ),
+                  maxLines: 1,
+                  overflow: TextOverflow.ellipsis,
+                ),
+              ],
+            ),
+
+
+          ],
+        ),
+      );
+
+
+  }
 
   @override
   Widget build(BuildContext context) {
+
+    StageInfo? _selectedStageInfo = Provider.of<DashboardViewModel>(context).stageInfo;
 
     return Scaffold(
 
@@ -39,14 +106,7 @@ class _StageDetailsPage extends State<StageDetailsPage> {
               Container(
                 child: Padding(
                   padding: const EdgeInsets.all(36.0),
-                  child: Form(
-                    key: _formKey,
-                    child: Column(
-                      children: <Widget>[
-
-
-                      ],
-                    ),),
+                  child: _buildSongItem(_selectedStageInfo!),
                 ),
               ),
 
